@@ -14,11 +14,11 @@ module mult32x32_arith (
 
 // Put your code here
 // ------------------
-logic [8:0] mx_1_out;
-logic [16:0] mx_2_out;
-logic [24:0] mult_out;
-logic [64:0] shifter_out;
-logic [64:0] adder_out;
+logic [7:0] mx_1_out;
+logic [15:0] mx_2_out;
+logic [23:0] mult_out;
+logic [63:0] shifter_out;
+logic [63:0] adder_out;
 always_ff @(posedge clk, posedge reset) begin
     if (upd_prod) begin
         product <= adder_out;
@@ -29,8 +29,16 @@ always_ff @(posedge clk, posedge reset) begin
 end
 
 always_comb begin
-    mx_1_out = a[8*a_sel:8*(a_sel+1)];
-    mx_2_out = a[16*b_sel:16*(b_sel+1)];
+    case(a_sel) 
+    0:  mx_1_out = a[7:0];
+    1:  mx_1_out = a[15:8];
+    2:  mx_1_out = a[23:16];
+    3:  mx_1_out = a[31:24];
+    endcase
+    case (b_sel)
+    0:  mx_1_out = b[15:0];
+    1:  mx_2_out = b[31:16];
+    endcase
     mult_out = mx_1_out * mx_2_out;
     if (shift_sel <=5) begin 
     shifter_out = mult_out<<( 8* (2**shift_sel));
