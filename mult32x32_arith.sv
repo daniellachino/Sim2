@@ -36,12 +36,12 @@ always_comb begin
     3:  mx_1_out = a[31:24];
     endcase
     case (b_sel)
-    0:  mx_1_out = b[15:0];
+    0:  mx_2_out = b[15:0];
     1:  mx_2_out = b[31:16];
     endcase
     mult_out = mx_1_out * mx_2_out;
     if (shift_sel <=5) begin 
-    shifter_out = mult_out<<( 8* (2**shift_sel));
+    shifter_out = mult_out<<( -8+ 8* (2**shift_sel));
     end else begin
         shifter_out = 0;
     end
