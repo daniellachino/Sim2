@@ -40,11 +40,15 @@ always_comb begin
     1:  mx_2_out = b[31:16];
     endcase
     mult_out = mx_1_out * mx_2_out;
-    if (shift_sel <=5) begin 
-    shifter_out = mult_out<<( -8+ 8* (2**shift_sel));
-    end else begin
-        shifter_out = 0;
-    end
+    case(shift_sel)
+    0: shifter_out = mult_out;
+    1: shifter_out = mult_out << 8;
+    2: shifter_out = mult_out << 16;
+    3: shifter_out = mult_out << 24;
+    4: shifter_out = mult_out << 32;
+    5: shifter_out = mult_out << 40;
+    default: shifter_out = 0;
+    endcase
     adder_out = shifter_out+product;
     
 end
