@@ -64,7 +64,6 @@ module mult32x32_fast_fsm (
 			end
 			else if(b_msw_is_0&&a_msb_is_0)begin
 				next_state = idle;
-				busy=1'b0;
 			end
 			else begin
 				next_state = b_w0_a_by2;
@@ -75,7 +74,6 @@ module mult32x32_fast_fsm (
 				shift_sel=3'b011;
 			if(b_msw_is_0) begin
 				next_state=idle;
-				busy= 1'b0;
 			end
 			else begin
 				next_state = b_w0_a_by3;
@@ -97,7 +95,6 @@ module mult32x32_fast_fsm (
 			shift_sel=3'b100;
 			if(a_msb_is_0) begin
 				next_state = idle;
-				busy= 1'b0;
 			end
 			else begin
 				next_state=b_w1_a_by2;
@@ -105,7 +102,6 @@ module mult32x32_fast_fsm (
 		end
 		b_w1_a_by2: begin
 			next_state = idle;
-			busy = 1'b0;
 			b_sel = 1'b1;
 			a_sel = 2'b11;
 			shift_sel = 3'b101;
