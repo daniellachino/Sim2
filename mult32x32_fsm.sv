@@ -82,7 +82,6 @@ module mult32x32_fsm (
 		end
 		b_w1_a_by2: begin
 			next_state = idle;
-			busy = 1'b0;
 			b_sel = 1'b1;
 			a_sel = 2'b11;
 			shift_sel = 3'b101;
