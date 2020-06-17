@@ -22,10 +22,9 @@ logic [63:0] adder_out;
 always_ff @(posedge clk, posedge reset) begin
     if (upd_prod) begin
         product <= adder_out;
-    end else begin
+    end if (clr_prod || reset) begin
         product <=0;
     end
-    if (clr_prod) product <= 0;
 end
 
 always_comb begin
