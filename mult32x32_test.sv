@@ -25,16 +25,20 @@ always begin
 end
 
 initial begin
-    clk = 0;
+    clk = 1;
     reset = 1;
     start = 0;
-    #40;
+    repeat(4) begin
+        @(posedge clk);
+    end
     reset = 0;
     a = 314968744;
     b = 208081125;
-    #10;
+    @(posedge clk);
     start = 1;
-    #10;   
+    @(posedge clk)
+    start =0;
+
 
 end
 // End of your code
