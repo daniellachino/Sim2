@@ -28,13 +28,13 @@ initial begin
     clk = 0;
     reset = 1;
     start = 0;
-    #20;
+    #40;
     reset = 0;
     a = 314968744;
     b = 208081125;
-    #5;
+    #10;
     start = 1;
-    #5;   
+    #10;   
 
 end
 // End of your code
