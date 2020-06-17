@@ -29,6 +29,9 @@ always_ff @(posedge clk, posedge reset) begin
     end
 end
 
+assign a_msb_is_0 = ~|a[31:24];
+assign b_msw_is_0=~|b[31:16];
+    
 always_comb begin
     case(a_sel) 
     0:  mx_1_out = a[7:0];
@@ -51,11 +54,7 @@ always_comb begin
     default: shifter_out = 0;
     endcase
     adder_out = shifter_out+product;
-    
-    assign a_msb_is_0 = ~|a[31:24];
-    assign b_msw_is_0=~|b[31:16];
 end
-
 // End of your code
 
 endmodule
