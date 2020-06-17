@@ -38,7 +38,8 @@ initial begin
     start = 1;
     @(posedge clk)
     start =0;
-
+    @(negedge busy);
+    @(posedge clk);
 
 end
 // End of your code
