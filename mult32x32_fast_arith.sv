@@ -53,7 +53,7 @@ always_comb begin
     adder_out = shifter_out+product;
     
     assign a_msb_is_0 = ~|a[31:24];
-	assign b_msw_is_0=~|b[31:16];
+    assign b_msw_is_0=~|b[31:16];
 end
 
 // End of your code
